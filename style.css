@@ -42,6 +42,7 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--header-h) + env(safe-area-inset-top, 0px));
   -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
