@@ -1,3 +1,7 @@
+/* =========================================================
+   CYBER SEGURANÇA ELETRÔNICA — style.css
+   ========================================================= */
+
 :root {
   /* Cores */
   --bg: #060608;
@@ -42,7 +46,6 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--header-h) + env(safe-area-inset-top, 0px));
   -webkit-text-size-adjust: 100%;
-  -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -54,7 +57,6 @@ body {
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
-  -webkit-tap-highlight-color: transparent;
 }
 
 body.nav-open {
@@ -336,7 +338,9 @@ body.nav-open .menu-toggle span:nth-child(3) {
   color: var(--gold);
 }
 
-/* SERVIÇOS*/
+/* ---------------------------------------------------------
+   8. SERVIÇOS
+   --------------------------------------------------------- */
 .services {
   border-top: 1px solid var(--line);
 }
@@ -437,7 +441,9 @@ body.nav-open .menu-toggle span:nth-child(3) {
   vertical-align: middle;
 }
 
-/* DIFERENCIAIS */
+/* ---------------------------------------------------------
+   9. DIFERENCIAIS
+   --------------------------------------------------------- */
 .why {
   background: var(--bg-2);
   border-block: 1px solid var(--line-soft);
@@ -475,7 +481,9 @@ body.nav-open .menu-toggle span:nth-child(3) {
   font-size: 15px;
 }
 
-/* CONTATO */
+/* ---------------------------------------------------------
+   10. CONTATO
+   --------------------------------------------------------- */
 .contact .wrap {
   display: grid;
   grid-template-columns: 1fr 1.1fr;
@@ -671,7 +679,9 @@ footer {
   font-weight: 700;
 }
 
-/* WHATSAPP FLUTUANTE */
+/* ---------------------------------------------------------
+   12. WHATSAPP FLUTUANTE
+   --------------------------------------------------------- */
 .wa-float {
   position: fixed;
   right: max(20px, env(safe-area-inset-right, 0px));
@@ -697,7 +707,9 @@ footer {
   fill: var(--ink);
 }
 
-/* RESPONSIVIDADE */
+/* =========================================================
+   13. RESPONSIVIDADE
+   ========================================================= */
 
 /* ---- ≤ 1024px ---- */
 @media (max-width: 1024px) {
@@ -720,7 +732,8 @@ footer {
     --section-y: 80px;
   }
 
-  
+  /* FIX: backdrop-filter cria containing block para position:fixed.
+     Removemos do header enquanto o menu está aberto. */
   body.nav-open header.top {
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
@@ -995,7 +1008,9 @@ footer {
   }
 }
 
-/* ACESSIBILIDADE */
+/* =========================================================
+   14. ACESSIBILIDADE
+   ========================================================= */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -1008,4 +1023,97 @@ footer {
     animation-duration: .001ms !important;
     animation-iteration-count: 1 !important;
   }
+}
+
+/* =========================================================
+   15. REMOVER FUNDO CINZA AO TOCAR/CLICAR (MOBILE)
+   ========================================================= */
+
+/* 1. Força em html, body e TODOS os elementos */
+html,
+body,
+*,
+*::before,
+*::after {
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0) !important;
+}
+
+/* 2. Todos os clicáveis — remove o padrão do navegador */
+a,
+button,
+.btn,
+.svc .go,
+.menu-toggle,
+.wa-float,
+[role="button"] {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-touch-callout: none;
+}
+
+/* 3. Estado :active e :focus — sem outline nem fundo do navegador */
+a:active,
+a:focus,
+button:active,
+button:focus,
+.btn:active,
+.btn:focus {
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 4. SVG e filhos não recebem o clique — evita cinza no filho */
+.btn svg,
+.wa-float svg,
+.menu-toggle span,
+.svc .go svg {
+  pointer-events: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 5. Botões MANTÊM sua aparência correta ao tocar */
+
+/* Botão dourado — mantém o gradiente ao clicar */
+.btn-gold:active,
+.btn-gold:focus {
+  background: var(--gold-grad);
+  color: var(--ink);
+}
+
+/* Botão de linha — mantém transparente ao clicar */
+.btn-line:active,
+.btn-line:focus {
+  background: transparent;
+  color: var(--gold);
+}
+
+/* WhatsApp flutuante — mantém o gradiente circular */
+.wa-float:active,
+.wa-float:focus {
+  background: var(--gold-grad);
+  box-shadow: 0 8px 26px rgba(0, 0, 0, .55);
+}
+
+/* Menu toggle (hamburguer) — mantém sem fundo */
+.menu-toggle:active,
+.menu-toggle:focus {
+  background: transparent;
+  border-color: var(--line);
+}
+
+/* Links de serviço — mantém sem fundo */
+.svc .go:active,
+.svc .go:focus {
+  background: transparent;
+  color: var(--gold);
+}
+
+/* 6. Foco visível apenas para navegação por teclado (acessibilidade) */
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible),
+.btn:focus:not(:focus-visible) {
+  outline: none;
+  box-shadow: none;
 }
