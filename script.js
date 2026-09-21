@@ -1,22 +1,13 @@
-/* =========================================================
-   CYBER SEGURANÇA ELETRÔNICA — script.js
-   ========================================================= */
-
 (function () {
   'use strict';
 
-  /* ---------------------------------------------------------
-     1. CONFIGURAÇÃO — troque pelos dados reais
-     --------------------------------------------------------- */
+  /* CONFIGURAÇÃO */
   const CONFIG = {
-    // Formato internacional: 55 + DDD + número (sem símbolos)
-    whatsapp: '5500000000000',
-    telefoneExibido: '(00) 00000-0000'
+    whatsapp: '5551995280550',
+    telefoneExibido: '(51) 99528-0550'
   };
 
-  /* ---------------------------------------------------------
-     2. HELPERS
-     --------------------------------------------------------- */
+  /* HELPERS */
   const $  = (sel, ctx = document) => ctx.querySelector(sel);
   const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 
@@ -33,9 +24,7 @@
     window.open(url, '_blank', 'noopener');
   }
 
-  /* ---------------------------------------------------------
-     3. ANO + TELEFONES
-     --------------------------------------------------------- */
+  /* ANO + TELEFONES */
   function iniciarRodape() {
     const ano = $('#ano');
     if (ano) ano.textContent = new Date().getFullYear();
@@ -45,7 +34,7 @@
       el.textContent = CONFIG.telefoneExibido;
     });
 
-    // Telefone do rodapé — texto + link direto pro WhatsApp
+    // Telefone do rodapé
     $$('.js-phone-wa').forEach(el => {
       el.textContent = CONFIG.telefoneExibido;
       el.setAttribute('href', `https://wa.me/${CONFIG.whatsapp}`);
@@ -54,9 +43,7 @@
     });
   }
 
-  /* ---------------------------------------------------------
-     4. MENU MOBILE
-     --------------------------------------------------------- */
+  /* MENU MOBILE */
   function iniciarMenuMobile() {
     const toggle = $('.menu-toggle');
     const nav    = $('#primary-menu');
@@ -89,9 +76,7 @@
     mq.addEventListener('change', e => { if (e.matches) fechar(); });
   }
 
-  /* ---------------------------------------------------------
-     5. BOTÕES DE SERVIÇO — pré-seleciona no formulário
-     --------------------------------------------------------- */
+  /* BOTÕES DE SERVIÇO */
   function iniciarBotoesServico() {
     const select = $('#servico');
     if (!select) return;
@@ -105,9 +90,7 @@
     });
   }
 
-  /* ---------------------------------------------------------
-     6. BOTÕES DIRETOS (hero, header, flutuante)
-     --------------------------------------------------------- */
+  /* BOTÕES DIRETOS */
   function iniciarBotoesDiretos() {
     $$('.js-direct').forEach(a => {
       a.addEventListener('click', e => {
@@ -117,9 +100,7 @@
     });
   }
 
-  /* ---------------------------------------------------------
-     7. FORMULÁRIO DE ORÇAMENTO
-     --------------------------------------------------------- */
+  /* FORMULÁRIO DE ORÇAMENTO */
   function iniciarFormulario() {
     const botao = $('#enviar');
     if (!botao) return;
@@ -133,9 +114,7 @@
     });
   }
 
-  /* ---------------------------------------------------------
-     8. INIT
-     --------------------------------------------------------- */
+  /* INIT*/
   function init() {
     iniciarRodape();
     iniciarMenuMobile();
